@@ -198,7 +198,7 @@ svg.logo {
     width: 66%;
     max-height: 66%;
 
-    /* filter: invert(1); */
+    filter: invert(1);
 }
 
 .social-row {

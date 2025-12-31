@@ -54,7 +54,7 @@ html[data-theme="dark"] .logo-title img {
 }
 
 html[data-theme="dark"] SVG.logo {
-    filter: invert(0);
+    filter: none;
 }
 
 html[data-theme="dark"],
