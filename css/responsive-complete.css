@@ -595,8 +595,13 @@ body>main:not(.main-container) .splitText-container .line {
 }
 
 .corner-box-brand {
-
     font-size: var(--fs-16);
+}
+
+@media (max-width: 480px) {
+    .corner-box-brand {
+        font-size: var(--fs-12);
+    }
 }
 
 /* =========================================================

@@ -33,7 +33,7 @@
 }
 
 .corner-box-brand {
-    padding: 1rem;
+    padding: 0.7rem;
     background:
         linear-gradient(var(--black-color)) top right,
         linear-gradient(var(--black-color)) top right,
