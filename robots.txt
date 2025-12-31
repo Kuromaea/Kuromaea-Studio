@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://kuromaeastudio.github.io/sitemap.xml

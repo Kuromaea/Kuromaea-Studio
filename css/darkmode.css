@@ -1,0 +1,63 @@
+/* =========================================================
+   DARK MODE (toggle)
+   ========================================================= */
+
+svg.logo path {
+    fill: var(--black-color) !important;
+}
+
+.theme-toggle {
+    appearance: none;
+    background: transparent;
+    border: 2px solid var(--black-color);
+    border-radius: 999px;
+    padding: 8px 12px;
+
+    font-family: "PPMondwest";
+    font-size: var(--fs-10);
+    line-height: 1;
+    color: var(--black-color);
+
+    margin-right: 16px;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+    background-color: var(--blue-color);
+    border-color: var(--blue-color);
+    transform: translateY(-1px);
+}
+
+html[data-theme="dark"] {
+
+    --background-color: #0b0b0c;
+    --black-color: #f2f2f2;
+    --light-gray: #1d1d20;
+    --color-surface25: rgba(255, 255, 255, 0.25);
+
+    --black-to-black: linear-gradient(90deg, #f2f2f2, #f2f2f2);
+}
+
+html[data-theme="dark"] .page-transition {
+    background: #0b0b0c;
+}
+
+html[data-theme="dark"] .logo-title img {
+    filter: invert(1);
+}
+
+html[data-theme="dark"] SVG.logo {
+    filter: invert(0);
+}
+
+html[data-theme="dark"],
+html[data-theme="dark"] body {
+    background: #0b0b0c;
+}

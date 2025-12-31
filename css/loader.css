@@ -1,0 +1,54 @@
+@import url(./design.css);
+
+body.is-loading main,
+body.is-loading header,
+body.is-loading footer {
+    opacity: 0;
+}
+
+/* Overlay loader */
+.preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: grid;
+    place-items: center;
+    background: var(--background-color)
+}
+
+.preloader__inner {
+    width: 1200px;
+}
+
+.preloader__img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 16px;
+}
+
+.preloader__bar {
+    width: 100%;
+    height: 10px;
+    border: 2px solid var(--black-color);
+    overflow: hidden;
+    border-radius: 2px;
+}
+
+.preloader__barFill {
+    width: 0%;
+    height: 100%;
+    background: var(--black-color);
+}
+
+.preloader__percent {
+    margin-top: 12px;
+    font-size: var(--fs-24);
+    font-family: 'PPMondwest';
+    color: var(--black-color);
+}
+
+/* Debug - console */
+/* sessionStorage.removeItem("kuro_preloader_seen") */

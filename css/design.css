@@ -1,0 +1,112 @@
+@font-face {
+    font-family: "NaturalMono";
+    src: url("../assets/font/Natural%20Mono-Regular.ttf") format("truetype"),
+        url("../assets/font/Natural%20Mono%20Alt-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "PPMondwest";
+    src: url("../assets/font/PPMondwest-Regular.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "PPNeueBit";
+    src: url("../assets/font/PPNeueBit-Bold.otf") format("opentype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "RevolverBlackletter";
+    src: url("../assets/font/RevolverBlackletter-Regular.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "BBHBartle";
+    src: url("../assets/font/BBHBartle-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Variables */
+:root {
+
+    --accent-color: #000000;
+    --primary-color: #000000;
+    --text-color: #000000;
+    --background-color: #d8d8d8;
+
+    --black-color: #222;
+    --white-color: #f0f0f0;
+    --white-op-color: rgba(255, 255, 255, 0.01);
+
+    --dark-color: rgba(146, 146, 146, 0.2);
+    --darkblack-color: #333333;
+
+    --lightgrey-color: #7e7e7e;
+    --lightgrey2-color: #8b8b8b;
+    --lightgrey3-color: #696969;
+    --yellow-color: #FFD800;
+    /* IMPORTANT COLOR */
+    --blue-color: #67ff26;
+    /* 266bff */
+    --grey-color: rgba(34, 34, 34, 0.4);
+
+    --black-to-black: linear-gradient(to right, #1b1b1b, #1b1b1b) no-repeat;
+    --white-to-white: linear-gradient(to right, #ffffff, #f1f1f1) no-repeat;
+    --black-to-white: linear-gradient(to right, #1b1b1b, #cbcbcb) no-repeat;
+    --white-to-black: linear-gradient(to right, #cbcbcb, #1b1b1b) no-repeat;
+
+    --fs-10: 0.625rem;
+    --fs-12: 0.75rem;
+    --fs-14: 0.875rem;
+    --fs-16: 1rem;
+    --fs-18: 1.125rem;
+    --fs-20: 1.25rem;
+    --fs-22: 1.375rem;
+    --fs-24: 1.5rem;
+    --fs-26: 1.625rem;
+
+    --fs-30: 2rem;
+    --fs-40: 2.5rem;
+    --fs-42: 2.625rem;
+    --fs-50: 3.125rem;
+
+    --fs-64: 4rem;
+    --fs-72: 4.5rem;
+    --fs-80: 5rem;
+    --fs-100: 6.25rem;
+
+    --fs-200: 12.5rem;
+    --fs-250: 15.625rem;
+    --fs-300: 18.75rem;
+    --fs-400: 25rem;
+    --fs-500: 31.25rem;
+
+    --animation-1: transform 0.2s;
+    --animation-style-1: fadeIn 1s;
+
+    --animation-2: transform 0.5s;
+    --animation-style-2: fadeIn 2s;
+
+    --animation-style-3: fadeOut 1s;
+
+    --header-h: 100px;
+
+    --page-max: 980px;
+    --gap: 36px;
+    --divider: #cfcfcf;
+    --text: #111;
+    --muted: #444;
+}

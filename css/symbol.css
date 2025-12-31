@@ -1,0 +1,117 @@
+.corner-box {
+    padding: 2rem;
+    background:
+        linear-gradient(var(--black-color)) top right,
+        linear-gradient(var(--black-color)) top right,
+        linear-gradient(var(--black-color)) top left,
+        linear-gradient(var(--black-color)) top left,
+
+        linear-gradient(var(--black-color)) bottom left,
+        linear-gradient(var(--black-color)) bottom left,
+        linear-gradient(var(--black-color)) bottom right,
+        linear-gradient(var(--black-color)) bottom right;
+
+    background-size: 20px 2px, 2px 20px;
+    background-repeat: no-repeat;
+}
+
+.corner-box-brand {
+    padding: 1rem;
+    background:
+        linear-gradient(var(--black-color)) top right,
+        linear-gradient(var(--black-color)) top right,
+        linear-gradient(var(--black-color)) top left,
+        linear-gradient(var(--black-color)) top left,
+
+        linear-gradient(var(--black-color)) bottom left,
+        linear-gradient(var(--black-color)) bottom left,
+        linear-gradient(var(--black-color)) bottom right,
+        linear-gradient(var(--black-color)) bottom right;
+
+    background-size: 10px 2px, 2px 10px;
+    background-repeat: no-repeat;
+    font-size: var(--fs-20);
+}
+
+.cross-box {
+    padding: 1em;
+    background:
+        linear-gradient(var(--white-color)) top center,
+        linear-gradient(var(--white-color)) top center,
+
+        linear-gradient(var(--white-color)) bottom center,
+        linear-gradient(var(--white-color)) bottom center,
+
+        linear-gradient(var(--white-color)) center left,
+        linear-gradient(var(--white-color)) center left,
+
+
+        linear-gradient(var(--white-color)) center right,
+        linear-gradient(var(--white-color)) center right;
+
+
+    background-size:
+        2px 10px,
+        10px 2px,
+        2px 10px,
+        10px 2px,
+        10px 2px,
+        2px 10px,
+        10px 2px,
+        2px 10px;
+
+    background-repeat: no-repeat;
+}
+
+
+.corner-box-2 {
+    padding: 2rem;
+    background:
+        linear-gradient(var(--black-color)) top right,
+        linear-gradient(var(--black-color)) top right,
+
+        linear-gradient(var(--black-color)) bottom left,
+        linear-gradient(var(--black-color)) bottom left;
+
+    background-size: 20px 2px, 2px 20px;
+    background-repeat: no-repeat;
+}
+
+.corner-box-3 {
+    padding: 2rem;
+    background:
+        linear-gradient(var(--black-color)) top left,
+        linear-gradient(var(--black-color)) top left,
+
+        linear-gradient(var(--black-color)) bottom right,
+        linear-gradient(var(--black-color)) bottom right;
+
+    background-size: 20px 2px, 2px 20px;
+    background-repeat: no-repeat;
+}
+
+.corner-box-4 {
+    padding: 2rem;
+    background:
+        linear-gradient(var(--black-color)) top left,
+        linear-gradient(var(--black-color)) top left,
+
+        linear-gradient(var(--black-color)) bottom left,
+        linear-gradient(var(--black-color)) bottom left;
+
+    background-size: 20px 2px, 2px 20px;
+    background-repeat: no-repeat;
+}
+
+.corner-box-5 {
+    padding: 2rem;
+    background:
+        linear-gradient(var(--black-color)) top right,
+        linear-gradient(var(--black-color)) top right,
+
+        linear-gradient(var(--black-color)) bottom right,
+        linear-gradient(var(--black-color)) bottom right;
+
+    background-size: 20px 2px, 2px 20px;
+    background-repeat: no-repeat;
+}

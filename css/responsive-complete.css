@@ -1,0 +1,816 @@
+@media (min-width: 821px) {
+
+    html,
+    body {
+        overflow-x: visible;
+    }
+}
+
+@media (max-width: 820px) {
+
+    html,
+    body {
+        overflow-x: hidden;
+    }
+}
+
+body.nav-open {
+    overflow: hidden;
+    touch-action: none;
+}
+
+@media (max-width: 820px) {
+
+    html,
+    body {
+        overflow-x: clip;
+    }
+}
+
+@supports not (overflow-x: clip) {
+    @media (max-width: 820px) {
+
+        html,
+        body {
+            overflow-x: hidden;
+        }
+    }
+}
+
+@media (min-width: 821px) {
+
+    .page-transition,
+    .custom-cursor,
+    .swipeimage {
+        max-width: 100vw;
+    }
+}
+
+/* -----------------------------
+   Fluid variables
+   ----------------------------- */
+:root {
+    --pad-x: clamp(16px, 4vw, 100px);
+    --radius: clamp(14px, 2.5vw, 48px);
+    --nav-font: var(--fs-24);
+    --small-font: var(--fs-16);
+}
+
+img,
+svg {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ✅ important: style.css has "padding: 0 100px" (shorthand)
+   so we must override with padding shorthand too */
+body .header-container {
+    padding: 0 var(--pad-x);
+    gap: clamp(10px, 2vw, 20px);
+}
+
+body .logo-title {
+    width: auto;
+    flex: 0 0 auto;
+}
+
+.logo-title img {
+    width: clamp(34px, 4vw, 48px);
+    display: block;
+}
+
+body .navigation-bar a {
+    font-size: var(--nav-font);
+}
+
+body .head-description {
+    font-size: var(--small-font);
+    width: auto;
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.head-description p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+body .main-container,
+body .work-container,
+body .about-container,
+body .contact-container {
+    padding-inline: var(--pad-x);
+}
+
+body .social-row {
+    padding-inline: var(--pad-x);
+    gap: 16px;
+}
+
+body .social-left,
+body .social-right {
+    font-size: var(--fs-20);
+}
+
+body .footer-content {
+    padding-inline: var(--pad-x);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    text-align: center;
+}
+
+body .footer-content a,
+body .footer-content span {
+    font-size: var(--fs-20);
+    padding: 0 12px;
+}
+
+@media (max-width: 840px) {
+
+    body .social-left,
+    body .social-right {
+        font-size: var(--fs-20);
+    }
+}
+
+@media (max-width: 375px) {
+
+    body .social-left,
+    body .social-right {
+        font-size: var(--fs-16);
+    }
+}
+
+/* -----------------------------
+   Home: logo-outer (GSAP 3D)
+   ----------------------------- */
+body .logo-outer {
+    width: min(900px, 92vw);
+    height: auto;
+    aspect-ratio: 16 / 9;
+    margin: clamp(18px, 6vw, 60px) auto;
+}
+
+body svg.logo {
+    width: min(680px, 70%);
+    max-height: 70%;
+}
+
+body .splitText-container {
+    width: min(100%, 1200px);
+    padding-inline: clamp(10px, 3vw, 24px);
+}
+
+body .line {
+    max-width: 96vw;
+}
+
+/* -----------------------------
+   Work: cards + GSAP swipeimage
+   ----------------------------- */
+body .work-items {
+    padding-inline: 0;
+}
+
+@media (max-width: 820px) {
+    body .work-item .card-link {
+        position: relative;
+        flex-wrap: nowrap;
+        align-items: center;
+        gap: clamp(12px, 2.5vw, 22px);
+    }
+
+    body .work-item img.swipeimage {
+        position: relative;
+        top: auto;
+        left: auto;
+
+        transform: none;
+
+        opacity: 1;
+        visibility: visible;
+
+        pointer-events: none;
+        z-index: 1;
+
+        width: clamp(92px, 22vw, 150px);
+        height: clamp(92px, 22vw, 150px);
+        object-fit: cover;
+        border-radius: 5px;
+
+        margin-left: auto;
+        flex: 0 0 auto;
+    }
+
+    body .work-text {
+        min-width: 0;
+        flex: 1 1 auto;
+    }
+
+    body .work-text h3 {
+        font-size: var(--fs-20);
+    }
+
+    body .work-text p {
+        font-size: var(--fs-16);
+    }
+
+    body .work-emoji {
+        font-size: var(--fs-24);
+    }
+}
+
+@media (max-width: 480px) {
+    body .work-item img.swipeimage {
+        width: clamp(84px, 26vw, 130px);
+        height: clamp(84px, 26vw, 130px);
+    }
+}
+
+/* -----------------------------
+   About: fixed margins/padding -> fluid
+   ----------------------------- */
+body .about-section {
+    margin: clamp(18px, 6vw, 10vh) auto;
+    padding-inline: var(--pad-x);
+}
+
+body .profile-card__content {
+    margin: 0;
+}
+
+body .profile-card__name {
+    font-size: var(--fs-30);
+}
+
+body .profile-card__role {
+    font-size: var(--fs-24);
+}
+
+body .profile-card__desc {
+    font-size: var(--fs-20);
+}
+
+body .contact-text {
+    font-size: var(--fs-50);
+    line-height: 1;
+    word-break: break-word;
+    letter-spacing: 0.02em;
+}
+
+body #next {
+    font-size: var(--fs-20);
+    padding: 12px clamp(18px, 4vw, 28px);
+}
+
+body .marquee-1,
+body .marquee-2,
+body .marquee-3,
+body .marquee-4 {
+    font-size: var(--fs-100);
+}
+
+@media (max-width: 1024px) {
+    body .profile-card__name {
+        font-size: var(--fs-24);
+    }
+
+    body.profile-card__media {
+        max-height: 100%;
+    }
+}
+
+@media (max-width: 430px) {
+    body .profile-card__role {
+        font-size: var(--fs-20);
+        text-align: center;
+    }
+
+    body .profile-card-section {
+        padding: 0;
+    }
+
+    body .brand-list {
+        flex-wrap: wrap;
+    }
+
+    body .brand-tag {
+        font-size: var(--fs-10);
+    }
+
+    body .profile-card__name {
+        font-size: var(--fs-24);
+        text-align: center;
+    }
+}
+
+/* -----------------------------
+   Cursor: hidden on touch devices 
+   ----------------------------- */
+@media (pointer: coarse) {
+    .custom-cursor {
+        display: none;
+    }
+}
+
+@media (max-width: 840px) {
+    body .contact-text {
+        font-size: var(--fs-30);
+    }
+}
+
+@media (max-width: 430px) {
+    body .contact-text {
+        font-size: var(--fs-16);
+    }
+}
+
+@media (max-width: 840px) {
+
+    body .marquee-1,
+    body .marquee-2,
+    body .marquee-3,
+    body .marquee-4 {
+        font-size: var(--fs-30);
+    }
+}
+
+@media (max-width: 430px) {
+
+    body .marquee-1,
+    body .marquee-2,
+    body .marquee-3,
+    body .marquee-4 {
+        font-size: var(--fs-16);
+    }
+}
+
+/* =========================================================
+   2) BURGER MENU 
+   ========================================================= */
+
+.nav-toggle {
+    display: none;
+    appearance: none;
+    background: transparent;
+    border: 2px solid var(--black-color);
+    border-radius: 12px;
+    padding: 10px 12px;
+    line-height: 1;
+    font-family: "PPMondwest";
+    font-size: 18px;
+    color: var(--black-color);
+}
+
+.nav-toggle .bar {
+    display: block;
+    width: 10px;
+    height: 2px;
+    margin: 5px 0;
+
+    background: var(--black-color);
+    transition: background-color 0.25s ease;
+}
+
+@media (max-width: 820px) {
+
+    body .header-container {
+        display: grid;
+        grid-template-columns: auto auto 1fr;
+        grid-template-rows: auto auto;
+        align-items: center;
+        padding-block: 12px;
+        height: var(--header-h);
+    }
+
+    body .logo-title {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    body .nav-toggle {
+        display: inline-flex;
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: center;
+    }
+
+    body .head-description {
+        grid-column: 3;
+        grid-row: 1;
+        text-align: right;
+    }
+
+    body .navigation-bar {
+        position: fixed;
+        inset: 0;
+        transform: none;
+        background: var(--background-color);
+        z-index: 99997;
+        display: grid;
+        place-items: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .25s ease;
+    }
+
+    body .nav-menu {
+        flex-direction: column;
+        gap: 18px;
+        text-align: center;
+    }
+
+    body .navigation-bar a {
+        font-size: var(--fs-30);
+    }
+
+    body.nav-open .navigation-bar {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    body.nav-open .nav-toggle .bar:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    body.nav-open .nav-toggle .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    body.nav-open .nav-toggle .bar:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+    body .nav-toggle .bar {
+        transition: transform .2s ease, opacity .2s ease;
+    }
+
+    body .footer-wrapper {
+        height: auto;
+    }
+}
+
+/* Very small mobile */
+@media (max-width: 480px) {
+    .head-description p {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+        text-align: right;
+        line-height: 1.05;
+    }
+}
+
+/* ===========================
+   WORK FIX — Mobile
+   =========================== */
+@media (max-width: 480px) {
+
+    body .work-item .card-link {
+        flex-wrap: wrap;
+        align-items: flex-start;
+    }
+
+    body .work-item img.swipeimage {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+
+        max-height: 180px;
+
+        object-fit: cover;
+        margin: 0 0 10px 0;
+        flex: 0 0 100%;
+    }
+
+    body .work-item .work-text {
+        flex: 1 1 100%;
+        min-width: 0;
+    }
+
+    body .work-item .work-emoji {
+        margin-left: auto;
+        flex: 0 0 auto;
+    }
+}
+
+/* ===========================
+   ABOUT FIX — Mobile
+   =========================== */
+@media (max-width: 480px) {
+
+    body .profile-card {
+        grid-template-columns: 1fr;
+        row-gap: 14px;
+    }
+
+    body .profile-card__img {
+        max-width: 100%;
+        width: 100%;
+
+        aspect-ratio: 4 / 3;
+        max-height: 240px;
+        object-fit: cover;
+
+        border-radius: 14px;
+    }
+
+    body .profile-card__content {
+        padding: 0;
+    }
+
+    body .profile-card__desc {
+        font-size: var(--fs-14);
+        line-height: 1.35;
+        text-align: center;
+    }
+}
+
+@media (max-width: 360px) {
+    body .work-item img.swipeimage {
+        max-height: 150px;
+    }
+}
+
+/* =========================================================
+   ABOUT — Fix spacing splitText + resize js-about-text (GSAP safe)
+   ========================================================= */
+
+body>main:not(.main-container) {
+    padding-inline: var(--pad-x);
+}
+
+body>main:not(.main-container) .splitText-container.corner-box {
+    width: min(100%, 1200px);
+    margin-inline: auto;
+}
+
+body>main:not(.main-container) .splitText-container .line {
+    font-size: var(--fs-100);
+    letter-spacing: -12px;
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+}
+
+.title-section.section-1.js-about-text {
+    max-width: 1200px;
+    margin-inline: auto;
+}
+
+.title-section.section-1.js-about-text h2.text {
+    font-size: var(--fs-40);
+    line-height: 1.15;
+    margin: 0 0 0.35em 0;
+}
+
+.title-section.section-1.js-about-text h2.text:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 480px) {
+    .title-section.section-1.js-about-text {
+        padding-inline: 0;
+    }
+
+    .title-section.section-1.js-about-text h2.text {
+        font-size: clamp(16px, 4.6vw, 20px);
+        line-height: 1.18;
+    }
+}
+
+/* =========================================================
+   Loader layout (clean)
+   ========================================================= */
+
+.preloader {
+    padding: clamp(16px, 4vw, 48px);
+    align-items: stretch;
+}
+
+.preloader__inner {
+    width: min(1200px, 92vw);
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    align-items: center;
+}
+
+.preloader__img {
+    margin: 0;
+    display: grid;
+    place-items: center;
+}
+
+.preloader__img img {
+    width: min(900px, 86vw);
+    max-height: min(70vh, 520px);
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+.preloader__bar {
+    width: 100%;
+    height: clamp(8px, 1.2vw, 12px);
+    border-width: 2px;
+    border-radius: 999px;
+}
+
+.preloader__barFill {
+    border-radius: 999px;
+}
+
+.preloader__bar,
+.preloader__percent {
+    align-self: end;
+}
+
+.preloader__percent {
+    margin-top: 10px;
+    padding-bottom: max(0px, env(safe-area-inset-bottom));
+    font-size: clamp(14px, 2vw, 22px);
+    text-align: center;
+}
+
+@media (max-width: 820px) {
+    .preloader__img img {
+        max-height: 62vh;
+    }
+}
+
+@media (max-width: 480px) {
+    .preloader {
+        padding: 16px;
+    }
+
+    .preloader__img img {
+        width: 88vw;
+        max-height: 58vh;
+    }
+}
+
+/* =========================================================
+   HOME (index.html) — Mobile responsive
+   ========================================================= */
+@media (max-width: 480px) {
+    body:has(.logo-outer) .main-container {
+        min-height: calc(100svh - var(--header-h));
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: clamp(18px, 6vw, 34px);
+        padding-bottom: clamp(28px, 8vw, 48px);
+        gap: 0;
+    }
+
+    body:has(.logo-outer) .head-img {
+        flex: 1 1 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0;
+    }
+
+    body:has(.logo-outer) .logo-outer {
+        max-height: 70vh;
+    }
+
+    body:has(.logo-outer) svg.logo {
+        width: min(520px, 72%);
+        max-height: 68%;
+    }
+
+    body:has(.logo-outer) .social-row {
+        margin-top: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        padding: 0 var(--pad-x);
+        padding-bottom: clamp(8px, 3vw, 14px);
+        text-align: left;
+    }
+
+    body:has(.logo-outer) .social-left,
+    body:has(.logo-outer) .social-right {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 46vw;
+    }
+
+    body:has(.logo-outer) hr {
+        margin: 0;
+        margin-bottom: clamp(10px, 3vw, 16px);
+    }
+
+    body:has(.logo-outer) .marquee-container {
+        margin: 0;
+        padding-bottom: clamp(16px, 6vw, 32px);
+    }
+
+    body:has(.logo-outer) .marquee-1 {
+        line-height: 1.15;
+    }
+}
+
+/* =========================================================
+   FIX — Footer should NOT overlap marquee on mobile/tablet
+   ========================================================= */
+@media (max-width: 820px) {
+
+    body:has(.work-container) .footer-wrapper,
+    body:has(.about-section) .footer-wrapper {
+        position: static;
+        bottom: auto;
+        left: auto;
+        width: 100%;
+        height: auto;
+        z-index: auto;
+        padding: 15px;
+    }
+
+    body:has(.work-container) .footer-content,
+    body:has(.about-section) .footer-content {
+        padding-block: 12px;
+    }
+}
+
+/* =========================================================
+   THEME TOGGLE – RESPONSIVE FIX
+   ========================================================= */
+
+.theme-toggle {
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .header-container {
+        position: relative;
+    }
+
+    .theme-toggle {
+        position: absolute;
+        top: 22px;
+        right: 16px;
+        margin-right: 0;
+    }
+
+    .head-description {
+        padding-right: 70px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-container {
+        padding-top: 12px;
+    }
+}
+
+/* =========================================
+   ABOUT — Tablet (<=1024px)
+   Photo full height
+   ========================================= */
+/* ABOUT — Tablet: image full height (force) */
+@media (max-width: 1024px) {
+
+    body .profile-card.js-profile-card {
+        min-height: calc(100svh - var(--header-h));
+        display: grid;
+        align-items: stretch;
+    }
+
+    body .profile-card__media {
+        height: 100%;
+        align-self: stretch;
+    }
+
+    body img.profile-card__img.corner-box {
+        width: 100% !important;
+        height: 100% !important;
+        max-width: none !important;
+        max-height: none !important;
+        object-fit: cover !important;
+        display: block;
+    }
+}
+
+
+/* =========================================
+   ABOUT — brand-list (<=1024px)
+   Reduce oversize
+   ========================================= */
+@media (max-width: 1024px) {
+    body .brand-list {
+        gap: 0.4rem;
+    }
+
+    body .brand-tag {
+        font-size: 12px;
+        letter-spacing: 0.04em;
+    }
+}
