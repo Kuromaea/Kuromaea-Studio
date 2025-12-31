@@ -598,9 +598,11 @@ body>main:not(.main-container) .splitText-container .line {
     font-size: var(--fs-16);
 }
 
-@media (max-width: 480px) {
+@media (max-width: 460px) {
     .corner-box-brand {
-        font-size: var(--fs-12);
+        padding: 0.7rem;
+        font-size: var(--fs-16);
+
     }
 }
 
