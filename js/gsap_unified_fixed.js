@@ -933,5 +933,3 @@ if (scrollIndicator) {
     if (e.key === "Escape") setOpen(false);
   });
 })();
-
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrambleTextPlugin.min.js"></script>
