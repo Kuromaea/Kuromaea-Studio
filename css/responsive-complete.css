@@ -561,12 +561,6 @@ body>main:not(.main-container) .splitText-container.corner-box {
     margin-inline: auto;
 }
 
-/* body>main:not(.main-container) .splitText-container .line {
-    letter-spacing: -12px;
-    line-height: 0.9;
-    letter-spacing: 0.02em;
-} */
-
 .title-section.section-1.js-about-text {
     max-width: 1200px;
     margin-inline: auto;
