@@ -2,6 +2,10 @@
 document.documentElement.style.overflow = "";
 document.body.style.overflow = "";
 
+if (window.gsap) {
+  gsap.registerPlugin(window.ScrollTrigger, window.ScrambleTextPlugin, window.SplitText);
+}
+
 // ===============================
 // DARK MODE TOGGLE (persist + system preference)
 // ===============================
@@ -930,4 +934,4 @@ if (scrollIndicator) {
   });
 })();
 
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrambleTextPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrambleTextPlugin.min.js"></script>
