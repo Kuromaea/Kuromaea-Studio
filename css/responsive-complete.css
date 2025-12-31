@@ -523,7 +523,7 @@ body .marquee-4 {
         max-height: 240px;
         object-fit: cover;
 
-        border-radius: 14px;
+        /* border-radius: 14px; */
     }
 
     body .profile-card__content {
