@@ -40,16 +40,12 @@ hr {
     padding: 5px;
 }
 
-body.no-scroll-page {
-    overflow: hidden;
+body.no-scroll-page,
+html:has(body.no-scroll-page) {
     height: 100%;
+    overflow: hidden;
     overscroll-behavior: none;
     touch-action: none;
-}
-
-html:has(body.no-scroll-page) {
-    overflow: hidden;
-    height: 100%;
 }
 
 /* Custom cursor */
@@ -210,8 +206,16 @@ svg.logo {
     width: 66%;
     max-height: 66%;
 
-    filter: invert(1);
+    /* filter: invert(1); */
 }
+
+/* svg.logo,
+svg.logo * {
+  fill: #ffffff !important;
+  stroke: #ffffff !important;
+  filter: none !important;
+} */
+
 
 .social-row {
     width: 100%;

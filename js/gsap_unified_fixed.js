@@ -1,6 +1,9 @@
 // Always unlock scroll on each page load (safety)
-document.documentElement.style.overflow = "";
-document.body.style.overflow = "";
+// BUT keep scroll locked on pages that explicitly disable it (e.g. Home)
+if (!document.body.classList.contains("no-scroll-page")) {
+  document.documentElement.style.overflow = "";
+  document.body.style.overflow = "";
+}
 
 if (window.gsap) {
   gsap.registerPlugin(window.ScrollTrigger, window.ScrambleTextPlugin, window.SplitText);
@@ -58,8 +61,12 @@ if (window.gsap) {
     // Remove loader instantly + make site visible
     loader.remove();
     document.body.classList.remove("is-loading");
-    document.documentElement.style.overflow = "";
-    document.body.style.overflow = "";
+
+    if (!document.body.classList.contains("no-scroll-page")) {
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+    }
+
 
     // If you still fade-in your page via CSS (body.is-loading), force visible:
     gsap.set(["header", "main", "footer"], { opacity: 1 });
@@ -122,8 +129,10 @@ if (window.gsap) {
       onComplete: () => {
         loader.remove();
         document.body.classList.remove("is-loading");
-        document.documentElement.style.overflow = "";
-        document.body.style.overflow = "";
+        if (!document.body.classList.contains("no-scroll-page")) {
+          document.documentElement.style.overflow = "";
+          document.body.style.overflow = "";
+        }
       }
     });
 
@@ -177,7 +186,11 @@ if (window.gsap) {
     // -----------------------
     // OUT (on arrival)
     // -----------------------
-    document.documentElement.style.overflow = "";
+    if (!document.body.classList.contains("no-scroll-page")) {
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+    }
+
     if (sessionStorage.getItem(KEY) === "1") {
       sessionStorage.removeItem(KEY);
 
@@ -195,7 +208,11 @@ if (window.gsap) {
       gsap.set(overlay, { yPercent: 0 });
 
       gsap.delayedCall(HOLD_ON_ARRIVAL, () => {
-        document.documentElement.style.overflow = "";
+        if (!document.body.classList.contains("no-scroll-page")) {
+          document.documentElement.style.overflow = "";
+          document.body.style.overflow = "";
+        }
+
 
         gsap.to(overlay, {
           yPercent: 100,
@@ -332,8 +349,11 @@ if (window.gsap) {
   }
 
   window.addEventListener("pagehide", () => {
-    document.documentElement.style.overflow = "";
-    document.body.style.overflow = "";
+    if (!document.body.classList.contains("no-scroll-page")) {
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+    }
+
   });
 
 })();
@@ -986,3 +1006,8 @@ if (scrollIndicator) {
     if (e.key === "Escape") setOpen(false);
   });
 })();
+
+if (document.body.classList.contains("no-scroll-page")) {
+  window.addEventListener("wheel", (e) => e.preventDefault(), { passive: false });
+  window.addEventListener("touchmove", (e) => e.preventDefault(), { passive: false });
+}
