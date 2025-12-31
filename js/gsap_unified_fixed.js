@@ -8,7 +8,6 @@ if (window.gsap) {
 
 // ===============================
 // DARK MODE TOGGLE (persist only)
-// First visit is ALWAYS light. Dark mode is enabled only after user action.
 // ===============================
 (() => {
   const root = document.documentElement;
@@ -21,12 +20,12 @@ if (window.gsap) {
     if (theme === "dark") {
       root.setAttribute("data-theme", "dark");
       btn.setAttribute("aria-pressed", "true");
-      btn.setAttribute("aria-label", "Désactiver le mode sombre");
+      btn.setAttribute("aria-label", "Disable dark mode");
       if (icon) icon.textContent = "☀";
     } else {
       root.removeAttribute("data-theme");
       btn.setAttribute("aria-pressed", "false");
-      btn.setAttribute("aria-label", "Activer le mode sombre");
+      btn.setAttribute("aria-label", "Enable dark mode");
       if (icon) icon.textContent = "☾";
     }
   };
@@ -44,7 +43,6 @@ if (window.gsap) {
   });
 })();
 
-
 // ===============================
 // PRELOADER (CINEMATIC SLOW + RUN ONCE PER SESSION)
 // ===============================
@@ -52,7 +50,7 @@ if (window.gsap) {
   const loader = document.querySelector(".preloader");
   if (!loader) return;
 
-  // ✅ Run only once per session (no loader when coming back to Home)
+  // Run only once per session (no loader when coming back to Home)
   const KEY = "kuro_preloader_seen";
   const hasSeen = sessionStorage.getItem(KEY);
 
@@ -193,7 +191,6 @@ if (window.gsap) {
         }
       } catch (_) { }
 
-
       // start covered
       gsap.set(overlay, { yPercent: 0 });
 
@@ -251,7 +248,6 @@ if (window.gsap) {
     };
 
     document.addEventListener("click", (e) => {
-
       const a = e.target.closest("a");
       if (!a || !isInternalLink(a)) return;
 
@@ -282,7 +278,6 @@ if (window.gsap) {
         }
       } catch (_) { }
 
-
       e.preventDefault();
 
       sessionStorage.setItem(KEY, "1");
@@ -306,12 +301,12 @@ if (window.gsap) {
         );
       }
 
-      // ✅ navigation guaranteed
+      // navigation guaranteed
       navTimer = window.setTimeout(() => {
         window.location.href = targetUrl;
       }, Math.round((IN_DUR + HOLD_BEFORE_NAV) * 1000));
 
-      // ✅ failsafe: si au bout de 5s on est encore là, on unlock
+      // failsafe: if after 5s we're still here, unlock
       window.setTimeout(() => {
         if (document.visibilityState === "visible") unlock();
       }, 5000);
@@ -332,7 +327,7 @@ if (window.gsap) {
       if (navTimer) clearTimeout(navTimer);
     });
   } catch (err) {
-    // ✅ NE JAMAIS casser le reste des animations
+    // NEVER break the rest of the animations
     console.error("Page transition error:", err);
   }
 
@@ -522,7 +517,7 @@ if (scrollIndicator) {
 // gsap.utils.toArray(".work-item").forEach((item) => {
 //   const text = item.querySelector(".work-text");
 //   if (!text) return;
-
+//
 //   item.addEventListener("mouseenter", () => {
 //     gsap.to(text, {
 //       color: "var(--blue-color)",
@@ -530,7 +525,7 @@ if (scrollIndicator) {
 //       ease: "power2.out"
 //     });
 //   });
-
+//
 //   item.addEventListener("mouseleave", () => {
 //     gsap.to(text, {
 //       color: "var(--black-color)",
@@ -561,7 +556,7 @@ if (scrollIndicator) {
 
     item.addEventListener("mouseleave", () => {
       gsap.to(emoji, {
-        color: "var(--black-color)",  // <-- devient blanc en dark mode
+        color: "var(--black-color)",  // <-- becomes white in dark mode
         scale: 1,
         duration: 0.5,
         ease: "power2.out",
@@ -649,15 +644,15 @@ if (scrollIndicator) {
   mm.add("(max-width: 820px), (hover: none), (pointer: coarse)", () => {
     const images = gsap.utils.toArray(".work-item img.swipeimage");
 
-    // Nettoie tout ce que GSAP aurait pu mettre en inline
+    // Clean up everything GSAP may have set inline
     images.forEach((img) => {
       gsap.set(img, { clearProps: "x,y,xPercent,yPercent,opacity,visibility,transform" });
     });
 
-    // Optionnel: si tu veux être sûr qu'elles restent visibles en mobile
+    // Optional: if you want to ensure they remain visible on mobile
     // images.forEach((img) => gsap.set(img, { autoAlpha: 1 }));
 
-    // Cleanup automatique quand on quitte ce mode
+    // Auto cleanup when leaving this mode
     return () => {
       images.forEach((img) => {
         gsap.set(img, { clearProps: "x,y,xPercent,yPercent,opacity,visibility,transform" });
@@ -721,7 +716,7 @@ if (scrollIndicator) {
       el.addEventListener("mouseenter", onEnter);
       el.addEventListener("mouseleave", onLeave);
 
-      // Stocke les cleanups pour ce work-item
+      // Store cleanups for this work-item
       cleanups.push(() => {
         el.removeEventListener("mouseenter", onEnter);
         el.removeEventListener("mouseleave", onLeave);
@@ -731,7 +726,7 @@ if (scrollIndicator) {
       });
     });
 
-    // Cleanup automatique quand on repasse en mobile
+    // Auto cleanup when switching back to mobile
     return () => {
       cleanups.forEach((fn) => fn());
     };
@@ -774,9 +769,6 @@ if (scrollIndicator) {
   (() => {
     // ---------------------------------
     // Header / Footer: show-hide on scroll (MOBILE FRIENDLY)
-    // - First visit: header visible
-    // - Scroll down: header hides
-    // - Scroll up: header shows immediately (natural)
     // ---------------------------------
     const header = document.querySelector(".header-container");
     const footer = document.querySelector(".footer-wrapper");
@@ -799,7 +791,6 @@ if (scrollIndicator) {
     window.addEventListener("load", applyFooterMode);
     window.addEventListener("resize", applyFooterMode);
 
-    // ✅ Prefer transform animation instead of "top" (avoids mobile address bar issues)
     if (header) {
       gsap.set(header, { yPercent: 0, willChange: "transform" });
     }
@@ -831,7 +822,6 @@ if (scrollIndicator) {
         return;
       }
 
-      // ✅ Always show header near the very top (more natural)
       if (y <= 10) {
         revealHeader();
         if (setFooterBottom) setFooterBottom(-120);
@@ -840,12 +830,10 @@ if (scrollIndicator) {
         return;
       }
 
-      // Ignore tiny jitter (but keep it small for mobile)
       if (Math.abs(delta) < 2) return;
 
       const dir = delta > 0 ? 1 : -1;
 
-      // ✅ Key fix: trigger on direction change (header shows as soon as user scrolls up)
       if (dir !== lastDir) {
         lastDir = dir;
 
@@ -924,7 +912,7 @@ if (scrollIndicator) {
       })
         .to(card, { opacity: 1, y: 0, ease: "none" }, 0)
         .to(img, { x: 0, opacity: 1, ease: "none" }, 0)
-        .to(content, { x: 0, opacity: 1, ease: "none" }, 0)
+        .to(content, { x: 0, opacity: 1, ease: "none" }, 0);
       // .to(img, { filter: "grayscale(0%)", ease: "none" }, 0);
     });
 
@@ -936,43 +924,56 @@ if (scrollIndicator) {
 })();
 
 // ===============================
-// RESPONSIVE BURGER NAV 
+// RESPONSIVE BURGER NAV
 // ===============================
 (() => {
   const btn = document.querySelector(".nav-toggle");
-  const menu = document.querySelector("#nav-menu");
+  const menuList = document.querySelector("#nav-menu");
+  const nav = document.querySelector(".navigation-bar");
   const header = document.querySelector(".header-container");
-  if (!btn || !menu) return;
 
-  const setOpen = (open) => {
-    document.body.classList.toggle("nav-open", open);
-    btn.setAttribute("aria-expanded", open ? "true" : "false");
-    btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  if (!btn || !menuList || !nav || !header) return;
 
-    if (header && typeof gsap !== "undefined") {
-      gsap.killTweensOf(header);
+  const mqMobile = window.matchMedia("(max-width: 820px)");
 
-      if (open) {
+  const placeNavForViewport = () => {
+    if (mqMobile.matches) {
+      // Mobile: detach from header -> append to body (prevents fixed+transform bug)
+      if (nav.parentNode !== document.body) document.body.appendChild(nav);
+    } else {
+      // Desktop: restore nav inside header (your CSS expects it there)
+      if (nav.parentNode !== header) header.appendChild(nav);
 
-        gsap.set(header, { yPercent: 0 });
-        gsap.set(header, { clearProps: "transform" });
-      } else {
-
-        gsap.set(header, { yPercent: 0 });
-      }
+      // Safety: ensure mobile overlay state isn't stuck on desktop
+      document.body.classList.remove("nav-open");
+      btn.setAttribute("aria-expanded", "false");
     }
   };
 
+  placeNavForViewport();
+  if (mqMobile.addEventListener) mqMobile.addEventListener("change", placeNavForViewport);
+  else mqMobile.addListener(placeNavForViewport); // Safari fallback
+
+  const setOpen = (open) => {
+    // Only toggle overlay on mobile
+    if (!mqMobile.matches) return;
+
+    document.body.classList.toggle("nav-open", open);
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+    btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  };
+
   btn.addEventListener("click", () => {
+    placeNavForViewport(); // make sure it's in the right place first
     setOpen(!document.body.classList.contains("nav-open"));
   });
 
-
-  menu.addEventListener("click", (e) => {
+  // Close when clicking a link
+  nav.addEventListener("click", (e) => {
     if (e.target.closest("a")) setOpen(false);
   });
 
-
+  // Close on ESC
   window.addEventListener("keydown", (e) => {
     if (e.key === "Escape") setOpen(false);
   });
