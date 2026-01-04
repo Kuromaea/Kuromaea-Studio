@@ -8,7 +8,7 @@ if (window.gsap) {
 }
 
 // ===============================
-// DARK MODE TOGGLE (persist only)
+// DARK MODE TOGGLE
 // ===============================
 (() => {
   const root = document.documentElement;
@@ -31,9 +31,7 @@ if (window.gsap) {
     }
   };
 
-  // First visit: default to light.
-  // Only apply dark if the user explicitly chose it before.
-  const saved = localStorage.getItem("theme"); // "dark" | "light" | null
+  const saved = localStorage.getItem("theme");
   apply(saved === "dark" ? "dark" : "light");
 
   btn.addEventListener("click", () => {
@@ -45,31 +43,27 @@ if (window.gsap) {
 })();
 
 // ===============================
-// PRELOADER (CINEMATIC SLOW + RUN ONCE PER SESSION)
+// PRELOADER 
 // ===============================
 (() => {
   const loader = document.querySelector(".preloader");
   if (!loader) return;
 
-  // Run only once per session (no loader when coming back to Home)
   const KEY = "kuro_preloader_seen";
   const hasSeen = sessionStorage.getItem(KEY);
 
   if (hasSeen) {
-    // Remove loader instantly + make site visible
     loader.remove();
     document.body.classList.remove("is-loading");
 
     document.documentElement.style.overflow = "";
     document.body.style.overflow = "";
 
-    // If you still fade-in your page via CSS (body.is-loading), force visible:
     gsap.set(["header", "main", "footer"], { opacity: 1 });
 
     return;
   }
 
-  // Mark as seen right away (so going back to index won't show it again)
   sessionStorage.setItem(KEY, "1");
 
   const barFill = loader.querySelector(".preloader__barFill");
@@ -77,11 +71,9 @@ if (window.gsap) {
 
   let pulseTween = null;
 
-  // "Cinematic" settings
-  const MIN_SHOW = 5;  // minimum seconds the loader stays visible
-  const HOLD_AT = 92;  // max % before real "load"
+  const MIN_SHOW = 5;
+  const HOLD_AT = 92;
 
-  // Lock scroll
   document.body.classList.add("is-loading");
 
   const state = { p: 0 };
@@ -93,7 +85,6 @@ if (window.gsap) {
 
   const startTime = performance.now();
 
-  // Cinematic progress timeline
   const progTL = gsap.timeline({ paused: true });
   progTL
     .to(state, { p: 55, duration: 3.5, ease: "power2.out", onUpdate: setUI })
@@ -102,7 +93,6 @@ if (window.gsap) {
 
   progTL.play(0);
 
-  // Micro hold near HOLD_AT
   const holdTween = gsap.to(state, {
     p: HOLD_AT,
     duration: 9999,
@@ -142,7 +132,6 @@ if (window.gsap) {
     const elapsed = (performance.now() - startTime) / 1000;
     const remaining = Math.max(0, MIN_SHOW - elapsed);
 
-    // Optional: subtle bar pulse during waiting time
     if (barFill) {
       pulseTween = gsap.to(barFill, {
         opacity: 0.65,
@@ -157,7 +146,7 @@ if (window.gsap) {
 })();
 
 // ===============================
-// PAGE-TO-PAGE TRANSITIONS (ULTRA SAFE + SLOW)
+// PAGE-TO-PAGE TRANSITIONS
 // ===============================
 (() => {
   try {
@@ -189,7 +178,6 @@ if (window.gsap) {
     if (sessionStorage.getItem(KEY) === "1") {
       sessionStorage.removeItem(KEY);
 
-      // Burger nav close
       try {
         const btn = document.querySelector(".nav-toggle");
         document.body.classList.remove("nav-open");
@@ -199,7 +187,6 @@ if (window.gsap) {
         }
       } catch (_) { }
 
-      // start covered
       gsap.set(overlay, { yPercent: 0 });
 
       gsap.delayedCall(HOLD_ON_ARRIVAL, () => {
@@ -225,7 +212,7 @@ if (window.gsap) {
     }
 
     // -----------------------
-    // IN (on click) — navigation guaranteed + failsafe unlock
+    // IN (on click)
     // -----------------------
     let transitioning = false;
     let navTimer = null;
@@ -237,7 +224,6 @@ if (window.gsap) {
       if (href.startsWith("mailto:") || href.startsWith("tel:")) return false;
       if (a.target === "_blank") return false;
 
-      // external?
       try {
         const url = new URL(a.href);
         if (url.origin !== window.location.origin) return false;
@@ -276,7 +262,6 @@ if (window.gsap) {
       }
       transitioning = true;
 
-      // Burger button close
       try {
         const btn = document.querySelector(".nav-toggle");
         if (document.body.classList.contains("nav-open")) {
@@ -311,18 +296,15 @@ if (window.gsap) {
         );
       }
 
-      // navigation guaranteed
       navTimer = window.setTimeout(() => {
         window.location.href = targetUrl;
       }, Math.round((IN_DUR + HOLD_BEFORE_NAV) * 1000));
 
-      // failsafe: if after 5s we're still here, unlock
       window.setTimeout(() => {
         if (document.visibilityState === "visible") unlock();
       }, 5000);
     });
 
-    // if user uses back/forward cache
     window.addEventListener("pageshow", (event) => {
       if (event.persisted) {
         sessionStorage.removeItem(KEY);
@@ -331,13 +313,11 @@ if (window.gsap) {
       }
     });
 
-    // if the page is leaving, no need to keep lock
     window.addEventListener("pagehide", () => {
       transitioning = false;
       if (navTimer) clearTimeout(navTimer);
     });
   } catch (err) {
-    // NEVER break the rest of the animations
     console.error("Page transition error:", err);
   }
 
@@ -352,25 +332,20 @@ if (window.gsap) {
 // FORCE SCROLL TO TOP ON RELOAD
 // ===============================
 
-// Disable browser scroll restoration
 if ("scrollRestoration" in history) {
   history.scrollRestoration = "manual";
 }
 
-// Force scroll to top immediately (before render)
 window.scrollTo(0, 0);
 
-// Force scroll to top again once DOM is ready
 document.addEventListener("DOMContentLoaded", () => {
   window.scrollTo(0, 0);
 });
 
-// Force scroll to top on full load (images, fonts, etc.)
 window.addEventListener("load", () => {
   window.scrollTo(0, 0);
 });
 
-// Reset scroll position before page unload (refresh / close)
 window.addEventListener("beforeunload", () => {
   window.scrollTo(0, 0);
 });
@@ -504,7 +479,7 @@ if (scrollIndicator) {
 }
 
 // ===============================
-// HOVER: HEADER NAV LINKS (Home/Work/About/Contact)
+// HOVER: HEADER NAV LINKS
 // ===============================
 (() => {
   const navLinks = gsap.utils.toArray(".navigation-bar a");
@@ -566,7 +541,7 @@ if (scrollIndicator) {
 
     item.addEventListener("mouseleave", () => {
       gsap.to(emoji, {
-        color: "var(--black-color)",  // <-- becomes white in dark mode
+        color: "var(--black-color)",
         scale: 1,
         duration: 0.5,
         ease: "power2.out",
@@ -578,7 +553,7 @@ if (scrollIndicator) {
 
 
 // ===============================
-// HOVER: SOCIAL LEFT / RIGHT + FOOTER (FIX DARK MODE)
+// HOVER: SOCIAL LEFT / RIGHT + FOOTER
 // ===============================
 (() => {
   const targets = gsap.utils.toArray(
@@ -642,7 +617,7 @@ if (scrollIndicator) {
 })();
 
 // ===============================
-// GSAP CURSOR TRACKING (responsive-safe)
+// GSAP CURSOR TRACKING
 // ===============================
 (() => {
   const items = gsap.utils.toArray(".work-item");
@@ -650,19 +625,13 @@ if (scrollIndicator) {
 
   const mm = gsap.matchMedia();
 
-  // --- MOBILE / TOUCH: disable & cleanup
   mm.add("(max-width: 820px), (hover: none), (pointer: coarse)", () => {
     const images = gsap.utils.toArray(".work-item img.swipeimage");
 
-    // Clean up everything GSAP may have set inline
     images.forEach((img) => {
       gsap.set(img, { clearProps: "x,y,xPercent,yPercent,opacity,visibility,transform" });
     });
 
-    // Optional: if you want to ensure they remain visible on mobile
-    // images.forEach((img) => gsap.set(img, { autoAlpha: 1 }));
-
-    // Auto cleanup when leaving this mode
     return () => {
       images.forEach((img) => {
         gsap.set(img, { clearProps: "x,y,xPercent,yPercent,opacity,visibility,transform" });
@@ -670,7 +639,6 @@ if (scrollIndicator) {
     };
   });
 
-  // --- DESKTOP / HOVER: enable tracking
   mm.add("(min-width: 821px) and (hover: hover) and (pointer: fine)", () => {
     const images = items
       .map((el) => el.querySelector("img.swipeimage"))
@@ -726,7 +694,6 @@ if (scrollIndicator) {
       el.addEventListener("mouseenter", onEnter);
       el.addEventListener("mouseleave", onLeave);
 
-      // Store cleanups for this work-item
       cleanups.push(() => {
         el.removeEventListener("mouseenter", onEnter);
         el.removeEventListener("mouseleave", onLeave);
@@ -736,7 +703,6 @@ if (scrollIndicator) {
       });
     });
 
-    // Auto cleanup when switching back to mobile
     return () => {
       cleanups.forEach((fn) => fn());
     };
@@ -777,9 +743,6 @@ if (scrollIndicator) {
 // ===============================
 (() => {
   (() => {
-    // ---------------------------------
-    // Header / Footer: show-hide on scroll (MOBILE FRIENDLY)
-    // ---------------------------------
     const header = document.querySelector(".header-container");
     const footer = document.querySelector(".footer-wrapper");
 
@@ -878,11 +841,9 @@ if (scrollIndicator) {
       { passive: true }
     );
 
-    // ABOUT + scrolltrigger parts require the plugin
     if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
     gsap.registerPlugin(ScrollTrigger);
 
-    // About Text
     gsap.registerPlugin(ScrollTrigger);
 
     const aboutTextSection = document.querySelector(".js-about-text");
@@ -908,7 +869,6 @@ if (scrollIndicator) {
 
     }
 
-    // About card
     gsap.utils.toArray(".js-profile-card").forEach((card) => {
       const img = card.querySelector(".profile-card__img");
       const content = card.querySelector(".profile-card__content");
@@ -956,13 +916,9 @@ if (scrollIndicator) {
 
   const placeNavForViewport = () => {
     if (mqMobile.matches) {
-      // Mobile: detach from header -> append to body (prevents fixed+transform bug)
       if (nav.parentNode !== document.body) document.body.appendChild(nav);
     } else {
-      // Desktop: restore nav inside header (your CSS expects it there)
       if (nav.parentNode !== header) header.appendChild(nav);
-
-      // Safety: ensure mobile overlay state isn't stuck on desktop
       document.body.classList.remove("nav-open");
       btn.setAttribute("aria-expanded", "false");
     }
@@ -986,12 +942,10 @@ if (scrollIndicator) {
     setOpen(!document.body.classList.contains("nav-open"));
   });
 
-  // Close when clicking a link
   nav.addEventListener("click", (e) => {
     if (e.target.closest("a")) setOpen(false);
   });
 
-  // Close on ESC
   window.addEventListener("keydown", (e) => {
     if (e.key === "Escape") setOpen(false);
   });
